@@ -27,7 +27,7 @@ function ProductCard({ name, price, img }) {
         <HeartIcon size={24} color="#b98a3c" />
       </button>
       <div className="product-card__img">
-        <img src={img} alt={name} loading="lazy" />
+        <img src={img} alt={`Featured product: ${name}`} loading="lazy" />
       </div>
       <h3 className="product-card__name">{line1}<br />{line2}</h3>
       <p className="product-card__price">{price}</p>

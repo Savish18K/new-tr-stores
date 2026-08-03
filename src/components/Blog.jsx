@@ -7,7 +7,7 @@ function BlogCard({ title, date, img }) {
   return (
     <article className="blog-card">
       <a href="#" className="blog-card__img">
-        <img src={img} alt={title} loading="lazy" />
+        <img src={img} alt={`Blog post: ${title}`} loading="lazy" />
       </a>
       <div className="blog-card__body">
         <span className="blog-card__date">

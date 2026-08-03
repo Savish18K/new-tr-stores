@@ -12,7 +12,7 @@ function CategoryCard({ name, img, onCategoryClick }) {
   return (
     <a href="#" className="category-card" onClick={handleClick}>
       <div className="category-card__img">
-        <img src={img} alt={name} loading="lazy" />
+        <img src={img} alt={`${name} category products`} loading="lazy" />
       </div>
       <h3 className="category-card__name">{name.split(' ').map((w, i) => (
         <span key={i}>{w}<br /></span>

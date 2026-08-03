@@ -1,10 +1,15 @@
 import PageHeader from './PageHeader.jsx'
 import WhyChooseUs from './WhyChooseUs.jsx'
+import { Helmet } from 'react-helmet-async'
 import './AboutUs.css'
 
 export default function AboutUs({ onHomeClick }) {
   return (
     <>
+      <Helmet>
+        <title>About Us | New T. R. Stores</title>
+        <meta name="description" content="Learn about the rich history and legacy of New T. R. Stores in Gampola, providing authentic Ayurvedic products, herbal medicines, and daily essentials for generations." />
+      </Helmet>
       <PageHeader title="About Us" onHomeClick={onHomeClick} />
 
       <section className="story">

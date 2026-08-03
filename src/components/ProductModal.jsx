@@ -43,7 +43,7 @@ export default function ProductModal({ product, onClose }) {
         <div className="pmodal__grid">
           <div className="pmodal__media">
             <div className="pmodal__img">
-              <img src={product.img} alt={product.name} />
+              <img src={product.img} alt={`${product.name} - ${product.category}`} />
             </div>
             <span className="pmodal__badge">{product.category}</span>
           </div>

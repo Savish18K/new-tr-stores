@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import TopBar from './components/TopBar.jsx'
 import Header from './components/Header.jsx'
 import Navbar from './components/Navbar.jsx'
@@ -43,6 +44,10 @@ export default function App() {
 
         {page === 'home' && (
           <>
+            <Helmet>
+              <title>New T. R. Stores — Ayurvedic Products &amp; Herbal Medicines | Gampola</title>
+              <meta name="description" content="New T. R. Stores - Trusted Ayurvedic products, herbal medicines, grocery items and daily essentials in Gampola, Sri Lanka." />
+            </Helmet>
             <HeroSlider />
             <Welcome />
             <Categories onCategoryClick={(cat) => navigate('products', cat)} />

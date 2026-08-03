@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import PageHeader from './PageHeader.jsx'
 import ProductModal from './ProductModal.jsx'
 import { allProducts, productCategories } from '../data/data.js'
@@ -19,7 +20,7 @@ function ProductCard({ product, onClick }) {
   return (
     <button className="pcard" onClick={() => onClick(product)}>
       <div className="pcard__img">
-        <img src={product.img} alt={product.name} loading="lazy" />
+        <img src={product.img} alt={`${product.name} - ${product.category}`} loading="lazy" />
         <span className="pcard__view">View Details</span>
       </div>
       <div className="pcard__body">
@@ -100,6 +101,9 @@ export default function ProductsPage({ onHomeClick, initialCategory = null }) {
 
   return (
     <>
+      <Helmet>
+        <title>{initialCategory ? `${initialCategory} | New T. R. Stores` : 'All Products | New T. R. Stores'}</title>
+      </Helmet>
       <PageHeader title="Our Products" onHomeClick={onHomeClick} />
 
       <section className="products-page">
