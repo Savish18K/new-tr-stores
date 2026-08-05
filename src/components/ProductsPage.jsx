@@ -1,5 +1,8 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
+import { useCart } from '../context/CartContext.jsx'
+import { useWishlist } from '../context/WishlistContext.jsx'
+import { HeartIcon } from './Icons.jsx'
 import PageHeader from './PageHeader.jsx'
 import ProductModal from './ProductModal.jsx'
 import { allProducts, productCategories } from '../data/data.js'
@@ -17,8 +20,31 @@ const SORTS = [
 ]
 
 function ProductCard({ product, onClick }) {
+  const { addItem } = useCart()
+  const { toggleWishlist, isInWishlist } = useWishlist()
+  const [added, setAdded] = useState(false)
+
+  const saved = isInWishlist(product.id)
+
+  const handleAdd = (e) => {
+    e.stopPropagation()
+    addItem(product)
+    setAdded(true)
+    setTimeout(() => setAdded(false), 2000)
+  }
+
+  const handleWishlist = (e) => {
+    e.stopPropagation()
+    toggleWishlist(product)
+  }
+
   return (
-    <button className="pcard" onClick={() => onClick(product)}>
+    <article className="pcard" onClick={() => onClick(product)}>
+      <div className="pcard__actions">
+        <button className="pcard__wishlist" onClick={handleWishlist} aria-label={`Add ${product.name} to wishlist`}>
+          <HeartIcon size={24} color="#b98a3c" fill={saved ? "#b98a3c" : "none"} />
+        </button>
+      </div>
       <div className="pcard__img">
         <img src={product.img} alt={`${product.name} - ${product.category}`} loading="lazy" />
         <span className="pcard__view">View Details</span>
@@ -31,7 +57,12 @@ function ProductCard({ product, onClick }) {
           <span className="pcard__size"> / {product.size}</span>
         </p>
       </div>
-    </button>
+      <div className="pcard__footer">
+        <button className={`pcard__btn${added ? ' pcard__btn--added' : ''}`} onClick={handleAdd}>
+          {added ? 'Added ✓' : 'Add to Cart'}
+        </button>
+      </div>
+    </article>
   )
 }
 

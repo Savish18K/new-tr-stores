@@ -1,9 +1,14 @@
 import { useEffect, useState } from 'react'
+import { useCart } from '../context/CartContext.jsx'
+import { useWishlist } from '../context/WishlistContext.jsx'
+import { HeartIcon } from './Icons.jsx'
 import './ProductModal.css'
 
 export default function ProductModal({ product, onClose }) {
   const [qty, setQty] = useState(1)
   const [added, setAdded] = useState(false)
+  const { addItem } = useCart()
+  const { toggleWishlist, isInWishlist } = useWishlist()
 
   // Reset state whenever a different product is opened.
   useEffect(() => {
@@ -29,6 +34,7 @@ export default function ProductModal({ product, onClose }) {
   if (!product) return null
 
   const handleAdd = () => {
+    addItem(product, qty)
     setAdded(true)
     setTimeout(() => setAdded(false), 2200)
   }
@@ -49,8 +55,15 @@ export default function ProductModal({ product, onClose }) {
           </div>
 
           <div className="pmodal__info">
-            <span className="pmodal__num">No. {String(product.id).padStart(2, '0')}</span>
-            <h2 className="pmodal__name">{product.name}</h2>
+            <div className="pmodal__info-head" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
+              <div>
+                <span className="pmodal__num">No. {String(product.id).padStart(2, '0')}</span>
+                <h2 className="pmodal__name" style={{ margin: 0 }}>{product.name}</h2>
+              </div>
+              <button onClick={() => toggleWishlist(product)} aria-label="Toggle wishlist" style={{ background: 'none', border: 'none', cursor: 'pointer' }}>
+                <HeartIcon size={28} color="#b98a3c" fill={isInWishlist(product.id) ? "#b98a3c" : "none"} />
+              </button>
+            </div>
             {product.native && <p className="pmodal__native">{product.native}</p>}
 
             <p className="pmodal__price">

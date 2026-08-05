@@ -111,6 +111,10 @@
   background: var(--green-800);
   box-shadow: 0 6px 16px rgba(11, 72, 35, 0.3);
 }
+.product-card__btn--added {
+  background: var(--gold);
+  color: var(--green-800);
+}
 
 @media (max-width: 1400px) {
   .featured__grid { grid-template-columns: repeat(4, 1fr); }

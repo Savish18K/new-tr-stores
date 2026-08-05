@@ -1,5 +1,8 @@
+import { useState } from 'react'
 import { HeartIcon, StarIcon } from './Icons.jsx'
 import { products } from '../data/data.js'
+import { useCart } from '../context/CartContext.jsx'
+import { useWishlist } from '../context/WishlistContext.jsx'
 import './FeaturedProducts.css'
 
 const Arrow = ({ dir = 'left' }) => (
@@ -19,20 +22,35 @@ function Stars() {
   )
 }
 
-function ProductCard({ name, price, img }) {
+function ProductCard({ product }) {
+  const { name, price, img, id } = product
   const [line1, line2] = splitName(name)
+  const { addItem } = useCart()
+  const { toggleWishlist, isInWishlist } = useWishlist()
+  const [added, setAdded] = useState(false)
+
+  const saved = isInWishlist(id)
+
+  const handleAdd = () => {
+    addItem(product)
+    setAdded(true)
+    setTimeout(() => setAdded(false), 2000)
+  }
+
   return (
     <article className="product-card">
-      <button className="product-card__wishlist" aria-label={`Add ${name} to wishlist`}>
-        <HeartIcon size={24} color="#b98a3c" />
+      <button className="product-card__wishlist" aria-label={`Add ${name} to wishlist`} onClick={() => toggleWishlist(product)}>
+        <HeartIcon size={24} color="#b98a3c" fill={saved ? "#b98a3c" : "none"} />
       </button>
       <div className="product-card__img">
         <img src={img} alt={`Featured product: ${name}`} loading="lazy" />
       </div>
       <h3 className="product-card__name">{line1}<br />{line2}</h3>
-      <p className="product-card__price">{price}</p>
+      <p className="product-card__price">Rs. {price.toLocaleString()}.00</p>
       <Stars />
-      <button className="product-card__btn">Add to Cart</button>
+      <button className={`product-card__btn${added ? ' product-card__btn--added' : ''}`} onClick={handleAdd}>
+        {added ? 'Added ✓' : 'Add to Cart'}
+      </button>
     </article>
   )
 }
@@ -61,7 +79,7 @@ export default function FeaturedProducts() {
         </div>
         <div className="featured__grid">
           {products.map((p) => (
-            <ProductCard key={p.name} {...p} />
+            <ProductCard key={p.name} product={p} />
           ))}
         </div>
       </div>

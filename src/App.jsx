@@ -15,6 +15,8 @@ import StoreSection from './components/StoreSection.jsx'
 import Footer from './components/Footer.jsx'
 import AboutUs from './components/AboutUs.jsx'
 import ProductsPage from './components/ProductsPage.jsx'
+import CartPage from './components/CartPage.jsx'
+import WishlistPage from './components/WishlistPage.jsx'
 
 export default function App() {
   const [page, setPage] = useState('home')
@@ -33,7 +35,7 @@ export default function App() {
   return (
     <>
       <TopBar />
-      <Header onHomeClick={goHome} />
+      <Header onHomeClick={goHome} onNavigate={navigate} />
       <Navbar page={page} onNavigate={navigate} />
       <main>
         {page === 'about' && <AboutUs onHomeClick={goHome} />}
@@ -41,6 +43,9 @@ export default function App() {
         {page === 'products' && (
           <ProductsPage onHomeClick={goHome} initialCategory={productCategory} />
         )}
+
+        {page === 'cart' && <CartPage onHomeClick={goHome} onNavigate={navigate} />}
+        {page === 'wishlist' && <WishlistPage onHomeClick={goHome} onNavigate={navigate} />}
 
         {page === 'home' && (
           <>

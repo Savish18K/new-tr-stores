@@ -1,7 +1,11 @@
 import { UserIcon, HeartIcon, CartIcon, SearchIcon } from './Icons.jsx'
+import { useCart } from '../context/CartContext.jsx'
+import { useWishlist } from '../context/WishlistContext.jsx'
 import './Header.css'
 
-export default function Header({ onHomeClick }) {
+export default function Header({ onHomeClick, onNavigate }) {
+  const { cartCount } = useCart()
+  const { wishlistItems } = useWishlist()
   return (
     <header className="header">
       <div className="container header__inner">
@@ -26,14 +30,17 @@ export default function Header({ onHomeClick }) {
             <UserIcon />
             <span>My Account</span>
           </a>
-          <a href="#" className="header__action">
-            <HeartIcon />
+          <a href="#" className="header__action" onClick={(e) => { e.preventDefault(); onNavigate('wishlist') }}>
+            <span className="header__cart-wrap">
+              <HeartIcon />
+              {wishlistItems.length > 0 && <span className="header__cart-badge">{wishlistItems.length}</span>}
+            </span>
             <span>Wishlist</span>
           </a>
-          <a href="#" className="header__action header__action--cart">
+          <a href="#" className="header__action header__action--cart" onClick={(e) => { e.preventDefault(); onNavigate('cart') }}>
             <span className="header__cart-wrap">
               <CartIcon />
-              <span className="header__cart-badge">0</span>
+              {cartCount > 0 && <span className="header__cart-badge">{cartCount}</span>}
             </span>
             <span>Cart</span>
           </a>
