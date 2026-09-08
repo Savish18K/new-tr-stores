@@ -10,14 +10,14 @@ export const categories = [
 ]
 
 export const products = [
-  { name: 'Dhanwantharam Thailaya', price: 'Rs. 1,250.00', img: '/assets/products/dhanwantharam-thailaya.webp' },
-  { name: 'Link Natural Herbal Tea', price: 'Rs. 650.00', img: '/assets/products/link-natural-herbal-tea.webp' },
-  { name: 'Asamodagam Churna', price: 'Rs. 750.00', img: '/assets/products/asamodagam-churna.webp' },
-  { name: 'Siddha Medicine', price: 'Rs. 850.00', img: '/assets/products/siddha-medicine.webp' },
-  { name: 'Natural Honey', price: 'Rs. 950.00', img: '/assets/products/natural-honey.webp' },
-  { name: 'Gingelly Oil', price: 'Rs. 700.00', img: '/assets/products/gingelly-oil.webp' },
-  { name: 'Organic Spices Mix', price: 'Rs. 550.00', img: '/assets/products/organic-spices-mix.webp' },
-  { name: 'Herbal Natural Soap', price: 'Rs. 450.00', img: '/assets/products/herbal-natural-soap.webp' },
+  { id: 101, name: 'Dhanwantharam Thailaya', price: 1250, img: '/assets/products/dhanwantharam-thailaya.webp' },
+  { id: 501, name: 'Link Natural Herbal Tea', price: 650, img: '/assets/products/link-natural-herbal-tea.webp' },
+  { id: 102, name: 'Asamodagam Churna', price: 750, img: '/assets/products/asamodagam-churna.webp' },
+  { id: 103, name: 'Siddha Medicine', price: 850, img: '/assets/products/siddha-medicine.webp' },
+  { id: 201, name: 'Natural Honey', price: 950, img: '/assets/products/natural-honey.webp' },
+  { id: 10, name: 'Gingelly Oil', price: 700, img: '/assets/products/gingelly-oil.webp' },
+  { id: 601, name: 'Organic Spices Mix', price: 550, img: '/assets/products/organic-spices-mix.webp' },
+  { id: 401, name: 'Herbal Natural Soap', price: 450, img: '/assets/products/herbal-natural-soap.webp' },
 ]
 
 // Full catalogue shown in the "Herbal Oils" popup (Categories section).

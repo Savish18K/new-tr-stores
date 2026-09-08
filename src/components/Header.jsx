@@ -10,7 +10,7 @@ export default function Header({ onHomeClick, onNavigate }) {
     <header className="header">
       <div className="container header__inner">
         <a href="#" className="header__brand" onClick={(e) => { e.preventDefault(); onHomeClick?.() }}>
-          <img src="/assets/logo/logo.png" alt="New T. R. Stores logo" className="header__logo" />
+          <img src="/assets/logo/logo.png.jpeg" alt="New T. R. Stores logo" className="header__logo" />
           <div className="header__brand-text">
             <span className="header__brand-new">New</span>
             <span className="header__brand-name">T. R. Stores</span>

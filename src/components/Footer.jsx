@@ -47,7 +47,7 @@ export default function Footer() {
       <div className="container footer__top">
         <div className="footer__col footer__col--brand">
           <div className="footer__brand">
-            <img src="/assets/logo/logo.png" alt="New T. R. Stores logo" className="footer__logo" />
+            <img src="/assets/logo/logo.png.jpeg" alt="New T. R. Stores logo" className="footer__logo" />
             <div>
               <span className="footer__brand-new">New</span>
               <span className="footer__brand-name">T. R. Stores</span>
